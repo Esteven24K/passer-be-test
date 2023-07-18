@@ -30,7 +30,7 @@ const updateUser = (pk_user, name, status) => {
       );
       return user;
     } catch (e) {
-      throw new Error(e);
+      throw new Error(e)
     }
   };
   
@@ -51,12 +51,22 @@ const getUser = (pk_user) => {
  * @param {number} pk_user User primary key
  * @returns {pk_user: 1} User primary key
  */
-const deleteUser = (pk_user) => {
+const deleteUser = async (pk_user) => {
+  try {
 
-    throw new Error('Method not implemented.');
-}
+    await postgresql.public.none(`DELETE FROM users WHERE pk_user = '${pk_user}'`);
+    return { pk_user: pk_user };
+
+  } catch (error) {
+
+    throw new Error('Failed to delete user');
+
+  }
+};
 
 module.exports = {
     createUser,
-    getUser
+    getUser,
+    updateUser,
+    deleteUser
 }

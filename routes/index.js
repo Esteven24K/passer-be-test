@@ -6,6 +6,7 @@ const router = express.Router()
 //Se crea nueva ruta
 router.get('/users/:pk_user', users.getUser)
     .post('/users/', users.createUser)
-    .put('/users/:pk_user', users.updateUser);
+    .put('/users/:pk_user', users.updateUser)
+    .Delete('users/:pk_user', users.deleteUser)
 
 module.exports = router

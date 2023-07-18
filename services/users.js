@@ -30,8 +30,9 @@ const createUser = async (pk_user, name) => {
 
 /**
  * Update an user
- * @param {number} pk_user User id
+ * @param {number} pk_user User id 
  * @param {string} name User name "pedro"
+ * @param {Boolean} status User status true
  * @returns {{pk_user: 1, name: "pedro"}}
  */
 //Se crea nueva funcion
@@ -42,10 +43,35 @@ const updateUser = async (pk_user, name, status) => {
       throw new Error(e.message);
     }
 };
+ 
+/**
+ * Delete an user
+ * @param {number} pk_user User id
+ * @returns {{pk_user: 1}}
+ */
+const deleteUser = async (pk_user) => {
+    try {
+      // Verificar si el usuario existe antes de eliminarlo
+      const user = await getUser(pk_user);
   
-
+      if (user) {
+        // Realizar la eliminación del usuario
+        await usersModel.deleteUser(pk_user);
+  
+        return { pk_user: pk_user };
+      } else {
+        throw new Error('User not found');
+      }
+    } catch (error) {
+      throw new Error('Failed to delete user');
+    }
+  };
+  
+  
 
 module.exports = {
     getUser,
-    createUser
+    createUser,
+    updateUser,
+    deleteUser
 }
