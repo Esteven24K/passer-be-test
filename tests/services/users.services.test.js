@@ -14,13 +14,13 @@ describe('users main functions', () => {
     });
 
     // updateUser function test
-    //Se crea nueva funcion
+    //Se agrega test
     test('updateUser with {pk_user: 5, name: "pedro", status:"false"}', async () => {
         let user = await users.updateUser(5, "pedro", true);
         expect(user.pk_user).toBe(5);
     });
 
-    // deleteUser function test
+    // se agrega test
     test('deleteUser with {pk_user: 123}', async () => {
         let user = await users.deleteUser(123)
         expect(user.pk_user).toBe(123);
