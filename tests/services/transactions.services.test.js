@@ -19,4 +19,11 @@ describe('transactions main functions', () => {
         let userTransactions = await transactions.getTransactions(5);
         expect(userTransactions.length).toBeGreaterThan(0);
     });
+
+    // updateUser function test
+    //Se agrega test
+    test('updateTransaction with {fk_user: 5, description:"registro actualizado", amount: 1.3}', async () => {
+        let transaction = await transactions.updateTransactions(5, "registro actualizado", 1.3);
+        expect(transaction.fk_user).toBe(5);
+    });
 })

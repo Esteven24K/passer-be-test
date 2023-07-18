@@ -27,6 +27,22 @@ const getTransactions = async (pk_user) => {
 }
 
 /**
+ * Update  transactions
+ * @param {number} fk_user User foreign key
+ * @param {string} description Transaction description
+ * @param {float} amount Transaction amount
+ * @returns {{fk_user: 1, description: "Registro actualizado", 1.3}}
+ */
+//Se crea nueva funcion
+const updateTransactions = async (fk_user, description, amount) => {
+    try {
+      return transactionsModel.updateTransactions(fk_user, description, amount);
+    } catch (e) {
+      throw new Error(e.message);
+    }
+};
+
+/**
  * Create an transaction
  * @param {number} pk_transaction Transaction primary key
  * @param {number} fk_user User foreign key
@@ -46,5 +62,6 @@ const createTransaction = async (pk_transaction, fk_user, description, amount) =
 module.exports = {
     getTransaction,
     getTransactions,
-    createTransaction
+    createTransaction,
+    updateTransactions
 }
