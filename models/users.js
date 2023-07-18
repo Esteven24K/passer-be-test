@@ -22,6 +22,7 @@ const createUser = (pk_user, name) => {
  * @param {string} name User name
  * @returns {{pk_user: 1, name: "Juan"}}
  */
+//Se crea nueva funcion
 const updateUser = (pk_user, name, status) => {
     try {
       let user = postgresql.public.one(

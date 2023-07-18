@@ -14,6 +14,7 @@ describe('users main functions', () => {
     });
 
     // updateUser function test
+    //Se crea nueva funcion
     test('updateUser with {pk_user: 5, name: "pedro"}', async () => {
         let user = await users.createUser(5, "pedro");
         expect(user.pk_user).toBe(5);

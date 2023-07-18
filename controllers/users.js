@@ -23,7 +23,7 @@ const createUser = async (req, res, next) => {
         res.sendStatus(500) && next(e)
     }
 }
-
+//Se crea nueva funcion
 const updateUser = async (req, res, next) => {
     const { pk_user, name, status } = req.body;
     try {

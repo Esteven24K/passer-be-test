@@ -34,6 +34,7 @@ const createUser = async (pk_user, name) => {
  * @param {string} name User name "pedro"
  * @returns {{pk_user: 1, name: "pedro"}}
  */
+//Se crea nueva funcion
 const updateUser = async (pk_user, name, status) => {
     try {
       return usersModel.updateUser(pk_user, name, status);
