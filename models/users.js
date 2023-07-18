@@ -4,11 +4,11 @@ const { postgresql } = require('../databases/postgresql')
  * Get an specific user
  * @param {number} pk_user User primary key
  * @param {string} name User name
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @returns {user}
  */
-const createUser = (pk_user, name) => {
+const createUser = (pk_user, name, status) => {
     try {
-        let user = postgresql.public.one(`insert into users values ('${pk_user}', '${name}') returning *;`);
+        let user = postgresql.public.one(`insert into users values ('${pk_user}', '${name}', '${status}') returning *;`);
         return user
     }
     catch (e) {
@@ -20,7 +20,7 @@ const createUser = (pk_user, name) => {
  * Update an specific user
  * @param {number} pk_user User primary key
  * @param {string} name User name
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @returns {user}
  */
 //Se crea nueva funcion
 const updateUser = (pk_user, name, status) => {
@@ -54,7 +54,7 @@ const getUser = (pk_user) => {
 const deleteUser = async (pk_user) => {
   try {
 
-    await postgresql.public.none(`DELETE FROM users WHERE pk_user = '${pk_user}'`);
+    await postgresql.public.none(`delete from users where pk_user = '${pk_user}'`);
     return { pk_user: pk_user };
 
   } catch (error) {

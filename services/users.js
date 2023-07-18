@@ -17,11 +17,11 @@ const getUser = async (pk_user) => {
  * Create an user
  * @param {number} pk_user User id
  * @param {string} name User name
- * @returns {{pk_user: 1, name: "Juan"}}
+ * @returns {user}
  */
-const createUser = async (pk_user, name) => {
+const createUser = async (pk_user, name, status) => {
     try {
-        return usersModel.createUser(pk_user, name)
+        return usersModel.createUser(pk_user, name, status)
     } catch (e) {
         throw new Error(e.message)
     }
@@ -52,18 +52,18 @@ const updateUser = async (pk_user, name, status) => {
 const deleteUser = async (pk_user) => {
     try {
       // Verificar si el usuario existe antes de eliminarlo
-      const user = await getUser(pk_user);
+      const user = await usersModel.getUser(pk_user);
+
   
       if (user) {
         // Realizar la eliminación del usuario
-        await usersModel.deleteUser(pk_user);
+        return usersModel.deleteUser(pk_user);
   
-        return { pk_user: pk_user };
       } else {
         throw new Error('User not found');
       }
     } catch (error) {
-      throw new Error('Failed to delete user');
+      throw new Error(error.message);
     }
   };
   

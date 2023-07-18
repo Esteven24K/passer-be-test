@@ -15,7 +15,7 @@ const getUser = async (req, res, next) => {
 const createUser = async (req, res, next) => {
     const { pk_user, name, status} = req.body
     try {
-        let user = users.createUser(pk_user, name)
+        let user = users.createUser(pk_user, name, status)
         res.status(200).send(user)
         next()
     } catch (e) {
@@ -38,11 +38,12 @@ const updateUser = async (req, res, next) => {
 const deleteUser = async (req, res, next) => {
     const { pk_user } = req.params;
     try {
-      await usersModel.deleteUser(pk_user);
+      await users.deleteUser(pk_user);
   
       res.status(200).send({ pk_user: pk_user });
+      next();
     } catch (error) {
-      res.status(500).send({ error: 'Failed to delete user' });
+      res.sendStatus(500) && next(error);
     }
   };
   
