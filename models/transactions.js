@@ -7,9 +7,14 @@ const { postgresql } = require('../databases/postgresql')
  * @returns {{pk_transaction: 1, description: "registro nuevo"}} User schema
  */
 const getTransaction = (pk_transaction) => {
-
+  try{
     let transaction = postgresql.public.one(`select * from transaction where pk_transaction = '${pk_transaction}'`);
     return transaction
+  }
+  catch(e){
+    throw new Error(e)
+  }
+    
 }
 
 /**

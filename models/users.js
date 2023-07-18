@@ -41,9 +41,15 @@ const updateUser = (pk_user, name, status) => {
  * @returns {{pk_user: 1, name: "Juan"}} User schema
  */
 const getUser = (pk_user) => {
-
+  try
+  {
     let user = postgresql.public.one(`select * from users where pk_user = '${pk_user}'`);
     return user
+  }
+  catch(e){
+    
+  }
+    
 }
 
 /**

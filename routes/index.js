@@ -1,6 +1,7 @@
 const express = require('express')
 
-const { users, transactions } = require('../controllers')
+const { users } = require('../controllers')
+const {transactions} = require('../controllers')
 
 
 const router = express.Router()
@@ -11,7 +12,7 @@ router.get('/users/:pk_user', users.getUser)
     .delete('/users/:pk_user', users.deleteUser)
     .get('/transactions/:pk_transaction', transactions.getTransaction)
     .get('/transactions/user/:fk_user', transactions.getTransactions)
-    .post('/transactions/:pk_transaction', transactions.createTransaction)
+    .post('/transactions/', transactions.createTransaction)
     .put('/transactions/:fk_user', transactions.updateTransactions)
 
 module.exports = router

@@ -7,7 +7,7 @@ const transactionsModel = require('../models/transactions')
  */
 const getTransaction = async (pk_transaction) => {
     try {
-        return await transactionsModel.getTransaction(pk_transaction)
+        return transactionsModel.getTransaction(pk_transaction)
     } catch (e) {
         throw new Error(e.message)
     }
@@ -18,9 +18,9 @@ const getTransaction = async (pk_transaction) => {
  * @param {number} pk_transaction Transaction id
  * @returns {Array} Array of transaction objects
  */
-const getTransactions = async (pk_user) => {
+const getTransactions = async (fk_user) => {
     try {
-        return await transactionsModel.getTransactions(pk_user)
+        return transactionsModel.getTransactions(fk_user)
     } catch (e) {
         throw new Error(e.message)
     }
